@@ -2,8 +2,12 @@
 import streamlit as st
 from langchain_core.prompts import ChatPromptTemplate
 from langchain_core.output_parsers import StrOutputParser
-from langchain_community.llms import Ollama
+from langchain_huggingface import HuggingFaceEndpoint
+from dotenv import load_dotenv
+import os
 
+
+load_dotenv()
 st.markdown("""
     <style>
         body {
@@ -45,7 +49,6 @@ st.markdown("""
 """, unsafe_allow_html=True)
 st.markdown("<div class='header'>🧠 Tech Chatbot - LangChain x Ollama</div>", unsafe_allow_html=True)
 
-
 input_text = st.text_input("💬 Ask me anything technical")
 
 
@@ -54,7 +57,11 @@ prompt = ChatPromptTemplate.from_messages([
 ),
     ("user", "Question: {question}")
 ])
-llm = Ollama(model="llama3")
+llm = HuggingFaceEndpoint(
+    repo_id="mistralai/Mistral-7B-Instruct-v0.3",
+    huggingfacehub_api_token=os.getenv("HUGGINGFACE_API_TOKEN"),
+    temperature=0.5, max_new_tokens=500
+)
 parser = StrOutputParser()
 chain = prompt | llm | parser
 
