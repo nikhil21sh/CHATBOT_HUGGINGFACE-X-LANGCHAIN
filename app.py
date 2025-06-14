@@ -47,7 +47,7 @@ st.markdown("""
         }
     </style>
 """, unsafe_allow_html=True)
-st.markdown("<div class='header'>🧠 Tech Chatbot - LangChain x Ollama</div>", unsafe_allow_html=True)
+st.markdown("<div class='header'>🧠 Tech Chatbot - LangChain x HuggingFace</div>", unsafe_allow_html=True)
 
 input_text = st.text_input("💬 Ask me anything technical")
 
