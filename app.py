@@ -58,7 +58,7 @@ prompt = ChatPromptTemplate.from_messages([
     ("user", "Question: {question}")
 ])
 llm = HuggingFaceEndpoint(
-    repo_id="mistralai/Mistral-7B-Instruct-v0.3",
+    repo_id="HuggingFaceH4/zephyr-7b-beta",
     huggingfacehub_api_token=os.getenv("HUGGINGFACE_API_TOKEN"),
     temperature=0.5, max_new_tokens=500
 )
